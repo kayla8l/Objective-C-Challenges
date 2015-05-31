@@ -1,0 +1,23 @@
+        // challenge: figure out how many seconds a bunny born on October 1st, 1990 at 7:28:09 has been alive for
+        
+        NSDate *now_2 = [[NSDate alloc] init];
+        // sets the current time
+        NSDateComponents *comps = [[NSDateComponents alloc] init];
+        [comps setYear:1990];
+        [comps setMonth:10];
+        [comps setDay:1];
+        [comps setHour:7];
+        [comps setMinute:28];
+        [comps setSecond:9];
+        // sets the components of the bunny's birthday
+        
+        NSCalendar *g = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        // sets to the Gregorian calendar
+        NSDate *birthday = [g dateFromComponents:comps];
+        // initializing NSDate instance to the birth date
+        
+        double secondsSinceBirthday = [now_2 timeIntervalSinceDate: birthday];
+        // seconds since birthday
+        
+        NSLog(@"The bunny has been alive for %.2f seconds", secondsSinceBirthday);
+        // print out seconds since birthday
