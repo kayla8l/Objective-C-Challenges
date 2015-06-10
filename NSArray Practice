@@ -1,6 +1,6 @@
 //
 //  main.m
-//  DateList
+//  Groceries
 //
 //  Created by Lee on 15-06-09.
 //  Copyright (c) 2015 Lee. All rights reserved.
@@ -13,82 +13,44 @@ int main(int argc, const char * argv[])
 
     @autoreleasepool {
         
-        // create 3 NSDate objects
-        NSDate *now = [NSDate date];
-        NSDate *tomorrow = [now dateByAddingTimeInterval:24.0 * 60.0 * 60.0];
-        NSDate *yesterday = [now dateByAddingTimeInterval:-24.0 * 60.0 * 60.0];
+        // challenge: create an empty NSMutableArray object and add several grocery-like strings to the array
+        // use fast enumeration to print it out
         
-        // create an array containing all three
-        NSArray *dateList = @[now, tomorrow, yesterday];
-        // instances of NSArray's are immutable
-        // you can access an individual item in an array by its index
-        // the index is zero-based
-        
-        // print a couple of dates
-        NSLog(@"The first date is %@", dateList[0]);
-        // same as writing
-        NSLog(@"The first date is %@", now);
-        NSLog(@"The third date is %@", dateList[2]);
-        
-        // how many dates are in the array?
-        NSLog(@"There are %lu dates", [dateList count]);
+        NSMutableArray *groceryList = [[NSMutableArray alloc] init];
+        // creates an empty array
         
         
-        // cannot use index outside of the array
-        // NSLog(@"The fourth date is %@", dateList[3]);
+        // make grocery items
         
-        // iterating over an array = performing a function on each item in an array
+        NSString *cheese = @"x1 block of marble cheese";
+        NSString *eggs = @"x2 cartons of free-range eggs";
+        NSString *dates = @"x1 kg of whole pitted dates";
+        NSString *bananas = @"x6 bananas";
+        NSString *juice = @"x3 cartons of orange juice";
+        NSString *kale = @"x2 bags of baby kale";
         
-        // iterate over an array
-        NSUInteger dateCount = [dateList count];
-        // counts the # of dates in dateList
-        for (int i = 0; i < dateCount; i++) {
-            NSDate *d = dateList[i];
-            // calls an item in the array
-            NSLog(@"Here is a date: %@", d); }
+        // add the grocery items to the list
         
-        // using a fast enumeration is more efficient because checking the array's item count is handled for you
+        [groceryList addObject:cheese];
+        [groceryList addObject:eggs];
+        [groceryList addObject:dates];
+        [groceryList addObject:bananas];
+        [groceryList addObject:juice];
+        [groceryList addObject:kale];
         
-        for (NSDate *d in dateList) {
-            NSLog(@"Here is a date:%@", d); }
+        // print out the items in the array using a for loop
         
-        // instance of NSMutableArray is similar to an instance of NSArray
-        // it is a subclass of NSArray
-        // but in NSMutableArray's you can add, remove + reorder pointers
+        NSUInteger *groceryCount = [groceryList count];
+        for (int i = 0; i < groceryCount; i++) {
+            NSString *s = groceryList[i];
+            NSLog(@"%@", s);
+        }
         
-        // create an empty mutable array
-        NSMutableArray *mut_dateList = [NSMutableArray array];
+        // print out the items in the array using a fast enumeration
         
-        // can also use alloc/init
-        NSMutableArray *mut_alloc_dateList = [[NSMutableArray alloc] init];
+        for (NSString *s in groceryList)
+        { NSLog(@"%@", s); }
         
-        // add two dates to the array
-        [mut_dateList addObject: now];
-        [mut_dateList addObject:tomorrow];
-        // adds the item to the end of the list 
-        
-        // add yesterday at the beginning of the list
-        [mut_dateList insertObject:yesterday atIndex:0];
-        
-        // iterate over the array
-        // if using fast enumeration, you cannot add/delete items from it
-        
-        for (NSDate *md in mut_dateList)
-        { NSLog(@"Here is a date: %@", md); }
-        
-        // remove yesterday
-        [mut_dateList removeObjectAtIndex:0];
-        NSLog(@"Now the first date is %@", mut_dateList[0]);
-        
-        // the old-style array method is slightly easier to read
-        
-        // create an array containing 3 pointers (nil terminates the list)
-        NSArray *oldstyle_dateList = [NSArray arrayWithObjects:now, tomorrow, yesterday, nil];
-        
-        // print a couple of dates
-        
-        NSLog(@"The first date is %@", [oldstyle_dateList objectAtIndex:0]);
-        NSLog(@"The third date is %@", [oldstyle_dateList objectAtIndex:2]);
         
     }
     return 0;
